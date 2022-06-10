@@ -4,7 +4,7 @@ import { useState, useEffect,useRef } from 'react';
 import playServer from '../../server/playServer';
 import Spinner from '../Spinner/Spinner';
 import Error from '../Page/Error/Error';
-import { set } from 'animejs';
+import useGet from '../../hooks/useGet';
 
 const Slider = (props) => {
 
@@ -12,16 +12,12 @@ const Slider = (props) => {
     const {loading, error, requestGamePhoto} = playServer();
 
     const[id, setId] = useState(); 
-    const[photos, setPhotos] = useState();
+    const data = useGet(slug, requestGamePhoto);
+    const[photos, setPhotos] = useState(data);
 
     useEffect(() => {
-        getGamePhoto(slug);
-    }, []);
-
-    const getGamePhoto = (id) => {
-        requestGamePhoto(id)
-            .then(data => setPhotos(data));
-    }
+        setPhotos(data);
+    }, [data])
 
     const loaded = loading ? <Spinner/> : null;
     const mistake = error ? <Error/> : null;

@@ -14,7 +14,7 @@ const playServer = () =>{
 
     const requestPlatformInfo = async (id) => {
         const data = await request(`https://api.rawg.io/api/platforms/${id}${_key}`);
-
+        console.log(data);
         return tranformPlatformInfo(data);
     } // Получение платформы
 
@@ -28,7 +28,7 @@ const playServer = () =>{
     const requestGames = async  () => {
         const data = await request(`https://rawg.io/api/games${_key}`);
         
-        return data;
+        return data.results;
     } // Получениение всех игр
 
     const requestGame = async (id) => {
@@ -43,20 +43,17 @@ const playServer = () =>{
         return data.results;
     }  // Получение фоток для одной игры
 
-    const options = {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-            'X-RapidAPI-Key': 'f202c9a36cmsh7d8f25247c5aae9p16cc87jsn2ea9ad210560',
-            'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com'
-        },
-        body: '[{"Text":"How are you? I am fine. What did you do today?"}]'
-    };
-    
-    fetch('https://microsoft-translator-text.p.rapidapi.com/BreakSentence?api-version=3.0', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+    const requestGameProgress = async (id) => {
+        const data = await request(`https://api.rawg.io/api/games/${id}/achievements${_key}`)
+
+        return data.results;
+    } // Получение достижений
+
+    const requestGameDevelopers = async (id) => {
+        const data = await request(`/games/${id}/achievements`);
+
+        return data;
+    } // Получение разработчиков
 
     return {
         loading, // Загрузка 
@@ -66,7 +63,9 @@ const playServer = () =>{
         onErrorFalse, // Выключение загрузки
         requestAllPlay, // Получение всех платформ
         requestPlatformInfo, // Получение одной платформы
-        requestGamePhoto // Получение фоток для одной игры
+        requestGamePhoto, // Получение фоток для одной игры
+        requestGameProgress, // Получение достижений
+        requestGameDevelopers // Получение разработчиков
     }
 }
 

@@ -7,7 +7,7 @@ import SearchPlatform from "../../SearchPlatform/SearchPlatform";
 import { Link } from "react-router-dom";
 
 const PlatformPage = () => {
-    const{loading, error, requestAllPlay, onErrorFalse} = playServer();
+    const{loading, error, requestAllPlay} = playServer();
 
     const[data, setData] = useState([]);
     const[filter, setFilter] = useState([]);

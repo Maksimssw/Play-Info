@@ -4,24 +4,22 @@ import { useEffect, useState } from 'react';
 import Spinner from '../../Spinner/Spinner';
 import Error from '../Error/Error';
 import { Link, useParams } from 'react-router-dom';
+import useGet from '../../../hooks/useGet';
 
 const PlatformInfo = () => {
 
-    const {requestPlatformInfo, loading, error} = playServer();
-    const [platform, setPlatform] = useState();
-
     const swth = useParams();
     const {idPlatform} = swth;
-    
+
+    const {requestPlatformInfo, loading, error} = playServer();
+    const data = useGet(idPlatform, requestPlatformInfo);
+
+    const [platform, setPlatform] = useState();
 
     useEffect(() => {
-        getPlatformInfo(idPlatform);
-    }, []);
+        setPlatform(data);
+    }, [data]);
 
-    const getPlatformInfo = (id) => {
-        requestPlatformInfo(id)
-            .then(data => setPlatform(data));
-    }
 
 
     const loaded = loading ? <Spinner/> : null;
@@ -40,9 +38,7 @@ const PlatformInfo = () => {
 }
 
 const Wiev = (data) => {
-
     const {platform} = data;
-    console.log(platform);
 
     const description = platform.description
             .replace(/[<br><p>/]/g, '')

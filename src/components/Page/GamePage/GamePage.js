@@ -4,24 +4,24 @@ import { Link, useParams } from 'react-router-dom';
 import playServer from '../../../server/playServer';
 import Spinner from '../../Spinner/Spinner';
 import Error from '../Error/Error';
+import Progress from '../../Progress/Progress';
 import Slider from '../../Slider/Slider';
+import useGet from '../../../hooks/useGet';
 
 const GamePage = () => {
 
     const {loading, error, requestGame} = playServer();
-
-    const [game, setGame] = useState();
+    
     const swht = useParams();
     const {idGame} = swht;
 
-    useEffect(() => {
-        getGame(idGame);
-    }, [])
+    const data = useGet(idGame, requestGame);
 
-    const getGame = (id) => {
-        requestGame(id)
-            .then(data => setGame(data));
-    }   
+    const [game, setGame] = useState(data);
+
+    useEffect(() => {
+        setGame(data);
+    }, [data]);
 
     const loaded = loading ? <Spinner/> : null;
     const mistake = error ? <Error/> : null;
@@ -42,7 +42,7 @@ const GamePage = () => {
 const Wiev = (props) => {
 
     const {game} = props;
-    const {background_image, description_raw, rating, released, updated, slug, name, website} = game
+    const {background_image, id, description_raw, rating, released, updated, slug, name, website} = game
 
     const upgrade = updated.replace(/T/g, '  ');
     const[style, setStyle] = useState();
@@ -82,6 +82,8 @@ const Wiev = (props) => {
             </div>
             <h3 className='game__website'>Перейти на офицальный сайт можно <a href={website}> тут</a> </h3>
             <Slider slug={slug}/>
+            <h2 className='progress__title'>Достижения</h2>
+            <Progress id={id}/>
         </>
     )
 }
