@@ -1,0 +1,41 @@
+@import './selector.scss';
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #0a0119;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    color: $white;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    &:focus{
+        outline: none;
+    }
+}
+
+a{
+    text-decoration: none;
+}
+
+input{
+    outline: none;
+    border: none;
+}
+
+button{
+    outline: none;
+    border: none;
+}
+
+ul li{
+    list-style-type: none;
+}
+
+.container{
+    max-width: 1300px;
+    margin:  0 auto;
+}

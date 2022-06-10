@@ -1,0 +1,41 @@
+@import '../App/reset.scss';
+
+.header{
+    background-color: #140c20;
+    padding: 30px 0;
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__logo{
+        font-size: 42px;
+        color: #fff;
+    }
+}
+
+.container{
+    max-width: 1300px;
+    margin:  0 auto;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    &__list{
+        margin-right: 30px;
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+    &__link{
+        color: #fff;
+        font-size: 22px;
+        transition: 0.3s all;
+        &:hover, &:focus{
+            outline: none;
+            color: $orange;
+            transform: translateY(-5px);
+        }
+    }
+}

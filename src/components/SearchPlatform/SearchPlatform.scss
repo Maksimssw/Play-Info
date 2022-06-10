@@ -1,0 +1,41 @@
+@import '../App/reset.scss';
+
+.search{
+    padding: 50px;
+    &__title{
+        font-size: 38px;
+        margin-bottom: 40px;
+    }
+    input{
+        width: 600px;
+        height: 50px;
+        border-radius: 30px;
+        background-color: $white;
+        color: #000;
+        padding-left: 30px;
+        font-size: 24px;
+        margin-bottom: 60px;
+    }
+    &__button{
+        display: block;
+        height: 50px;
+        border-radius: 30px;
+        cursor: pointer;
+        background-color: $orange;
+        color: $white;
+        width: 200px;
+        font-size: 24px;
+        transition: 0.3s all;
+        &:focus, &:hover{
+            background-color: $white;
+            color: $orange;
+        }
+    }
+    .container{
+        display: flex;
+        justify-content: space-between;
+    }
+    form{
+        padding-top: 100px;
+    }
+}

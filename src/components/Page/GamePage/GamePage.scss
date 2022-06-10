@@ -1,0 +1,81 @@
+@import '../../App/reset.scss';
+
+.game{
+    padding: 100px 0;
+    &__wrapper{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+    &__ph{
+        width: 500px;
+        img{
+            display: block;
+            width: 100%;
+            margin-bottom: 40px;
+            border-radius: 30px;
+        }
+    }
+    &__text{
+        width: 690px;
+    }
+    &__title{
+        font-size: 36px;
+        line-height: 42px;
+        margin-bottom: 50px;
+    }
+    &__description{
+        font-size: 24px;
+        line-height: 40px;
+        font-family: 'Roboto', sans-serif;
+    }
+    &__back{
+        font-size: 32px;
+        display: block;
+        text-align: center;
+        color: $white;
+        opacity: .6;
+        transition: 0.3s all;
+        &:hover, &:focus{
+            opacity: 1;
+            transform: translateX(-20px);
+        }
+    }
+    &__rating{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+    &__update{
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+    &__lastupdate{
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    &__name{
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    &__released{
+        font-size: 24px;
+        margin-bottom: 40px;
+        text-align: center; 
+    }
+    &__website{
+        font-size: 24px;
+        a{
+            color: $orange;
+        }
+    }
+}
