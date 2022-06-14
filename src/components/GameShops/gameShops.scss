@@ -1,0 +1,15 @@
+@import '../App/reset.scss';
+
+.game-shop{
+    padding: 50px 0;
+    &__list{
+        margin-bottom: 30px;
+        a{
+            color: $white;
+            font-size: 18px;
+        }
+    }
+    ul li{
+        list-style-type:decimal;
+    }
+}

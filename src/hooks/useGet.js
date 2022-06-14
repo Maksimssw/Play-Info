@@ -14,6 +14,7 @@ const useGet = (id, request) => {
         requestGameProgress,
         requestGameDevelopers,
         requestGamegTrailers,
+        requestGameShops,
     } = playServer();
 
 

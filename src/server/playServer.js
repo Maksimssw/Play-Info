@@ -61,6 +61,12 @@ const playServer = () =>{
         return await data.results;
     } // Трейлеры игры
 
+    const requestGameShops = async (id) => {
+        const data = await request(`https://api.rawg.io/api/games/${id}/stores${_key}`);
+
+        return data.results;
+    } // Магазины которые продают игру
+
     return {
         loading, // Загрузка 
         error, // Ошибка
@@ -73,6 +79,7 @@ const playServer = () =>{
         requestGameProgress, // Получение достижений
         requestGameDevelopers, // Получение разработчиков
         requestGamegTrailers, // Трейлеры игры
+        requestGameShops, // Магазины которые продают игру
     }
 }
 

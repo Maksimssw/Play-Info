@@ -8,6 +8,7 @@ import useGet from '../../../hooks/useGet';
 import useLoad from '../../../hooks/useLoad';
 import Developers from '../../Developers/Developers';
 import Trailers from '../../Trailers/Trailers';
+import GameShops from '../../GameShops/GameShops';
 
 const GamePage = () => {
 
@@ -89,6 +90,8 @@ const Wiev = (props) => {
             <Progress id={id}/>
             <h2 className='progress__title'>Разработчики игры</h2>
             <Developers id={id}/>
+            <h2 className='progress__title'>Магазины продающие данную игру</h2>
+            <GameShops slug={slug}/>
         </>
     )
 }
