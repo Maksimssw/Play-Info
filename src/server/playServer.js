@@ -50,10 +50,16 @@ const playServer = () =>{
     } // Получение достижений
 
     const requestGameDevelopers = async (id) => {
-        const data = await request(`/games/${id}/achievements`);
+        const data = await request(`https://api.rawg.io/api/games/${id}/development-team${_key}`);
 
-        return data;
+        return data.results;
     } // Получение разработчиков
+
+    const requestGamegTrailers = async (id) => {
+        const data = await request(`https://api.rawg.io/api/games/${id}/movies${_key}`);
+
+        return await data.results;
+    } // Трейлеры игры
 
     return {
         loading, // Загрузка 
@@ -65,7 +71,8 @@ const playServer = () =>{
         requestPlatformInfo, // Получение одной платформы
         requestGamePhoto, // Получение фоток для одной игры
         requestGameProgress, // Получение достижений
-        requestGameDevelopers // Получение разработчиков
+        requestGameDevelopers, // Получение разработчиков
+        requestGamegTrailers, // Трейлеры игры
     }
 }
 

@@ -1,8 +1,7 @@
 import './AllGamesPage.scss';
 import playServer from '../../../server/playServer';
 import { useEffect, useState} from 'react';
-import Spinner from "../../Spinner/Spinner";
-import Error from "../Error/Error";
+import useLoad from '../../../hooks/useLoad';
 import { Link } from 'react-router-dom';
 import useGet from '../../../hooks/useGet';
 
@@ -11,14 +10,16 @@ const AllGamesPage = () => {
     const {requestGames, loading, error} = playServer();
 
     const data = useGet(undefined, requestGames);
+
     const [games, setGames] = useState();
 
     useEffect(() => {
         setGames(data);
     }, [data]);
 
-    const loaded = loading ? <Spinner/> : null;
-    const mistake = error ? <Error/> : null;
+
+
+    const {loaded, mistake} = useLoad(loading, error);
     const content = loading || error || games === undefined ? null : <Wiev games={games}/>
 
     return(
@@ -35,7 +36,6 @@ const AllGamesPage = () => {
 
 const Wiev = (props) => {
 
-    console.log(props);
     const {games} = props
 
     const game = games.map(item => {

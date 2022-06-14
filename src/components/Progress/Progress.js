@@ -1,9 +1,8 @@
 import './Progress.scss';
 import { useState, useEffect } from 'react';
 import useGet from '../../hooks/useGet';
-import Spinner from '../Spinner/Spinner';
+import useLoad from '../../hooks/useLoad';
 import playServer from '../../server/playServer';
-import Error from '../Page/Error/Error';
 
 const Progress = (props) => {
     
@@ -17,19 +16,13 @@ const Progress = (props) => {
         setProgress(data);
     }, [data])
     
-    console.log(progress);
-
-    const loaded = loading ? <Spinner/> : null;
-    const mistake = error ? <Error/> : null;
+    const {loaded, mistake} = useLoad(loading, error);
     const contant = loading || error || progress === undefined  ? null : <Wiev progress={progress}/>
-
     return(
         <section className='progress'>
             {loaded}
             {mistake}
-            <ul className='progress__wrapper'>
-                {contant}
-            </ul>
+            {contant}
         </section>
     )
 }
@@ -37,21 +30,33 @@ const Progress = (props) => {
 const Wiev = (props) => {
     const {progress} = props;
 
-    const setProgress = progress.map(item => {
-        const {id, image, name, description} = item;
 
+    if(progress.length === 0){
         return(
-            <li key={id} className='progress__list'>
-                <div className='progress__ph'>
-                    <img src={image} alt='progress'/>
-                </div>
-                <h2 className='progress__name'>{name}</h2>
-                <p className='progress__description'>{description}</p>
-            </li>
+            <>
+                <div className='progress__err'>Достижений к этой игре не найдено 😞</div>
+            </>
         )
-    })
-
-    return setProgress;
+    } else {
+        const setProgress = progress.map(item => {
+            const {id, image, name, description} = item;
+    
+            return(
+                    <li key={id} className='progress__list'>
+                        <div className='progress__ph'>
+                            <img src={image} alt='progress'/>
+                        </div>
+                        <h2 className='progress__name'>{name}</h2>
+                        <p className='progress__description'>{description}</p>
+                    </li>
+            )
+        })
+        return (
+            <ul className='progress__wrapper'>
+                {setProgress}
+            </ul>
+        )
+    }
 }
 
 export default Progress;

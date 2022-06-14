@@ -6,7 +6,7 @@ const AppHeader = () => {
         <header className="header">
             <div className="container">
                 <NavLink to="/" className="header__logo">
-                    PLAY INFO
+                    GAME INFO
                 </NavLink>
                 <nav>
                     <ul className="menu">

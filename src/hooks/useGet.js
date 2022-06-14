@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import playServer from "../server/playServer";
 import Spinner from "../components/Slider/Slider";
-import Error from "../components/Page/Error/Error";
 
-const useGet = (id =  undefined, request) => {
+const useGet = (id, request) => {
 
     const {
-        loading,
-        error,
         requestGame, 
         requestGames, 
         onErrorFalse, 
@@ -15,7 +12,8 @@ const useGet = (id =  undefined, request) => {
         requestPlatformInfo,
         requestGamePhoto,
         requestGameProgress,
-        requestGameDevelopers
+        requestGameDevelopers,
+        requestGamegTrailers,
     } = playServer();
 
 
@@ -30,10 +28,7 @@ const useGet = (id =  undefined, request) => {
             .then(data => setData(data));
     }
 
-
-     if(data !== undefined) {
-        return data
-     }
+    if(data !== undefined) return data
 };
 
 export default useGet;

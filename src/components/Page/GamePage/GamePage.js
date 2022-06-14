@@ -2,11 +2,12 @@ import './GamePage.scss';
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import playServer from '../../../server/playServer';
-import Spinner from '../../Spinner/Spinner';
-import Error from '../Error/Error';
 import Progress from '../../Progress/Progress';
 import Slider from '../../Slider/Slider';
 import useGet from '../../../hooks/useGet';
+import useLoad from '../../../hooks/useLoad';
+import Developers from '../../Developers/Developers';
+import Trailers from '../../Trailers/Trailers';
 
 const GamePage = () => {
 
@@ -23,8 +24,7 @@ const GamePage = () => {
         setGame(data);
     }, [data]);
 
-    const loaded = loading ? <Spinner/> : null;
-    const mistake = error ? <Error/> : null;
+    const {loaded, mistake} = useLoad(loading, error);
     const contant = loading || error || game === undefined  ? null : <Wiev game={game}/>
 
     return(
@@ -61,6 +61,8 @@ const Wiev = (props) => {
         }
     }, []);
 
+    const descriptionRaw = description_raw === '' ? <p>К данной игре отсутствует Описание</p> : description_raw
+
     return (
         <>
             <div className='game__wrapper'>
@@ -77,13 +79,16 @@ const Wiev = (props) => {
                 </div>
                 <div className='game__text'>
                     <h2 className='game__title'>Описание</h2>
-                    <p className='game__description'>{description_raw}</p>
+                    <p className='game__description'>{descriptionRaw}</p>
                 </div>
             </div>
             <h3 className='game__website'>Перейти на офицальный сайт можно <a href={website}> тут</a> </h3>
             <Slider slug={slug}/>
+            <Trailers id={id}/>
             <h2 className='progress__title'>Достижения</h2>
             <Progress id={id}/>
+            <h2 className='progress__title'>Разработчики игры</h2>
+            <Developers id={id}/>
         </>
     )
 }

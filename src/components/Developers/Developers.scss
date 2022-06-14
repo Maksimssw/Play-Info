@@ -1,23 +1,22 @@
 @import '../App/reset.scss';
 
-.progress{
+.developers{
     padding: 50px 0;
     &__wrapper{
         display: grid;
         grid-template-columns: repeat(4, 300px);
         gap: 25px;
-        justify-content: center;
     }
     &__list{
         background: #140c20;
-        padding: 20px;
-        border-radius: 20px;
         box-shadow: 0 0 7px 6px #2a1b41;
+        border-radius: 20px;  
+        overflow: hidden;
+        padding-bottom: 20px;
     }
     &__ph{
-        width: 200px;
-        height: 200px;
-        margin: 0 auto;
+        width: 100%;
+        height: 330px;
         margin-bottom: 30px;
         img{
             width: 100%;
@@ -26,16 +25,9 @@
     }
     &__name{
         text-align: center;
-        margin-bottom: 30px;
-    }
-    &__description{
-        font-family: "Roboto", sans-serif;
-        font-size: 18px;
-        line-height: 24px;
-        text-align: center;
     }
     &__err{
-        font-size: 18px;
         text-align: center;
+        font-size: 18px;
     }
 }
