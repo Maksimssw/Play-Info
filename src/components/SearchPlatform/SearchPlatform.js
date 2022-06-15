@@ -1,6 +1,7 @@
 import './SearchPlatform.scss';
 import { useState } from 'react';
 import sniper from '../img/Platform/sniper.png';
+import trevor from '../img/Trevor.png';
 
 const SearchPlatform = (props) => {
 
@@ -28,6 +29,7 @@ const SearchPlatform = (props) => {
                 </form>
                 <div className='search__ph'>
                     <img src={sniper} alt="play"/>
+                    <img src={trevor} className='search__trevor' alt={trevor}/>
                 </div>
             </div>
         </section>

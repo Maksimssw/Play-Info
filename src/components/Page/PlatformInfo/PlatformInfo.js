@@ -43,18 +43,19 @@ const Wiev = (data) => {
     const description = platform.description
             .replace(/[<br><p>/]/g, '')
 
-    const notDescription = description === '' ? <h2>Инфораций не найдено</h2> : null;
+    const notDescription = description === '' ? <h2>Инфораций не найдено</h2> : description;
 
     return (
         <div className='platform-info__wrapper'>
             <div className='platform-info__ph'>
-                <img src={platform.img} alt='play'/>
-                <Link className='platform-info__back' to='/'>←</Link>
+                <div className='platform-info__photo'>
+                    <img src={platform.img} alt='play'/>
+                </div>
+                <Link className='platform-info__back' to='/'>← Вернутся</Link>
             </div>
             <div className='platform-info__text'>
                 <h1 className='platform-info__title'>Описание</h1>
                 <p className='platform-info__description'>
-                   {description}
                    {notDescription}
                 </p>
             </div>

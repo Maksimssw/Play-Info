@@ -2,7 +2,7 @@
 
 
 .platform{
-    padding: 30px;
+    padding: 30px 0;
     &__title{
         font-size: 28px;
         text-align: center;
@@ -58,6 +58,56 @@
             color: #fff;
             width: 300px;
             font-size: 24px;
+        }
+    }
+}
+
+@media screen and(max-width: 1300px) {
+    .platform{
+        &__wrapper{
+            grid-template-columns: repeat(3, 350px);
+        }
+    }
+}
+
+
+@media screen and(max-width: 1134px) {
+    .platform{
+        &__wrapper{
+            grid-template-columns: repeat(2, 350px);
+        }
+    }
+}
+
+
+@media screen and(max-width: 767px) {
+    .platform{
+        &__not{
+            font-size: 26px;    
+        }
+    }
+}
+
+
+@media screen and(max-width: 767px) {
+    .platform{
+        &__wrapper{
+            grid-template-columns: repeat(2, 250px);
+        }
+        &__ph{
+            height: 225px;
+        }
+    }
+}
+
+@media screen and(max-width: 550px) {
+    .platform{
+        &__title{
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        &__wrapper{
+            grid-template-columns: repeat(1, 100%);
         }
     }
 }

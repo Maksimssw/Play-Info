@@ -39,3 +39,28 @@ ul li{
     max-width: 1300px;
     margin:  0 auto;
 }
+
+@media screen and(max-width: 1300px) {
+    .container{
+        width: 1100px;
+    }
+}
+
+
+@media screen and(max-width: 1134px) {
+    .container{
+        width: 720px;
+    }
+}
+
+@media screen and(max-width: 767px) {
+    .container{
+        width: 525px;
+    }
+}
+
+@media screen and(max-width: 550px) {
+    .container{
+        width: 300px;
+    }
+}
