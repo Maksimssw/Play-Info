@@ -48,15 +48,15 @@ const Wiev = (props) => {
     
     return(
         <>
-            <div className='slider__container' style={{marginLeft: 0}}>
-                <div className='slider__arrow'>
+            <div className='slider__container slider__container-video' style={{marginLeft: 0}}>
+                <div className='slider__arrow slider__arrow-video'>
                     <img src={arrowLeft} onClick={prev} alt='arrowLeft'/>
                 </div>
                 <ul className='slider__wrapper'
                     style={style}>
                     {slid}
                 </ul>
-                <div className='slider__arrow'>
+                <div className='slider__arrow slider__arrow-video'>
                     <img src={arrowLeft} onClick={next} alt='arrowLeft'/>
                 </div>
             </div>

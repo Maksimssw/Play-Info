@@ -13,3 +13,24 @@
         list-style-type:decimal;
     }
 }
+
+@media screen and(max-width: 1134px) {
+    .game-shop{
+        padding: 30px 0;
+        &__list{
+            a{
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media screen and(max-width: 550px) {
+    .game-shop{
+        &__list{
+            a{
+                font-size: 12px;
+            }
+        }
+    }
+}

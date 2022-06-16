@@ -7,7 +7,7 @@
         justify-content: space-between;
         margin-bottom: 50px;
     }
-    &__ph{
+    &__photo{
         width: 500px;
         img{
             display: block;
@@ -84,5 +84,133 @@
     &__title{
         font-size: 32px;
         text-align: center;
+    }
+}
+
+@media screen and(max-width: 1300px) {
+    .game{
+        &__wrapper{
+            display: block;
+        }
+        &__ph{
+            display: flex;
+            justify-content: space-between;
+        }
+        &__text{
+            width: auto;
+        }
+        &__info{
+            margin-left: 100px;
+        }
+        &__release{
+            display: flex;
+        }
+        &__lastupdate{
+            margin: 0;
+            margin-right: 20px;
+        }
+        &-shop{
+            &__wrapper{
+                padding: 20px;
+            }
+        }
+    }
+}
+
+@media screen and(max-width: 1134px) {
+    .game{
+        &__title{
+            font-size: 34px;
+            line-height: 40px;
+            margin-bottom: 30px;
+        }
+        &__description{
+            font-size: 22px;
+            line-height: 28px;
+        }
+        &__ph{
+            display: block;
+        }
+        &__photo{
+            width: auto;
+        }
+        &__release{
+            justify-content: space-around;
+        }
+        &__lastupdate{
+            margin-right: 0;
+        }
+        &__info{
+            margin-left: 0;
+        }
+        &__result{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        &__rating{
+            margin: 0 0 40px 0;
+        }
+        &__photo{
+            img{
+                border-radius: 15px;
+            }
+        }
+    }
+}
+
+@media screen and(max-width: 767px) {
+    .game{
+        &__lastupdate{
+            font-size: 20px;
+        }
+        &__update{
+            font-size: 20px;
+        }
+        &__released{
+            font-size: 20px;
+        }
+        &__rating{
+            width: 70px;
+            height: 70px;
+            font-size: 18px;
+        }
+        &__name{
+            font-size: 24px;
+        }
+        &__title{
+            font-size: 24px;
+        }
+        &__back{
+            font-size: 24px;
+        }
+        &__description{
+            font-size: 18px;
+            line-height: 26px;
+        }
+        &__wrapper{
+            margin-bottom: 20px;
+        }
+    }
+}
+
+@media screen and(max-width: 550px) {
+    .game{
+        padding: 50px 0;
+        &__description{
+            font-size: 14px;
+        }
+        &__title{
+            margin-bottom: 10px;
+        }
+        &__website{
+            font-size: 14px;
+        }
+        &__result{
+            flex-wrap: wrap;
+        }
+        &__rating{
+            margin-bottom: 20px;
+        }
     }
 }

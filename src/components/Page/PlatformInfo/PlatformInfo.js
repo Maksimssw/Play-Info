@@ -5,6 +5,7 @@ import Spinner from '../../Spinner/Spinner';
 import Error from '../Error/Error';
 import { Link, useParams } from 'react-router-dom';
 import useGet from '../../../hooks/useGet';
+import useLoad from '../../../hooks/useLoad';
 
 const PlatformInfo = () => {
 
@@ -22,8 +23,7 @@ const PlatformInfo = () => {
 
 
 
-    const loaded = loading ? <Spinner/> : null;
-    const mistake = error ? <Error/> : null;
+    const {loaded, mistake} = useLoad(loading, error);
     const contant = loading || error || platform === undefined  ? null : <Wiev platform={platform}/>
 
     return(

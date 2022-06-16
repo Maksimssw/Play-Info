@@ -31,3 +31,44 @@
         font-size: 18px;
     }
 }
+
+
+@media screen and(max-width: 1300px) {
+    .developers{
+        padding: 30px 0;
+        &__wrapper{
+            display: flex;
+            padding: 20px;
+            overflow: auto;
+            justify-content: start;
+        }
+        &__name{
+            width: 300px;
+        }
+        &__list{
+            overflow: initial;
+        }
+        &__ph{
+            img{
+                border-radius: 15px;
+            }
+        }
+    }
+}
+
+@media screen and(max-width: 1134px) {
+    .developers{
+        &__ph{
+            height: 250px;
+        }
+    }
+}
+
+
+@media screen and(max-width: 550px) {
+    .developers{
+        &__name{
+            width: 265px;
+        }
+    }
+}

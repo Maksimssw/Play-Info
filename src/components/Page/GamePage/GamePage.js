@@ -9,6 +9,7 @@ import useLoad from '../../../hooks/useLoad';
 import Developers from '../../Developers/Developers';
 import Trailers from '../../Trailers/Trailers';
 import GameShops from '../../GameShops/GameShops';
+import Series from '../../Series/Series';
 
 const GamePage = () => {
 
@@ -68,15 +69,23 @@ const Wiev = (props) => {
         <>
             <div className='game__wrapper'>
                 <div className='game__ph'>
-                    <img src={background_image} alt='game'/>
-                    <h2 className='game__name'>{name}</h2>
-                    <div className='game__rating' style={{'background': `${style}`}}>
-                        {rating}
+                    <div className='game__photo'>
+                        <img src={background_image} alt='game'/>
                     </div>
-                    <p className='game__released'>Выпущенно: {released}</p>
-                    <p className='game__lastupdate'>Последнее обновление</p>
-                    <p className='game__update'>{upgrade}</p>
-                    <Link to='/games' className='game__back'>←</Link>
+                    <div className='game__info'>
+                        <div className='game__result'>
+                            <h2 className='game__name'>{name}</h2>
+                            <div className='game__rating' style={{'background': `${style}`}}>
+                                {rating}
+                            </div>
+                        </div>
+                        <p className='game__released'>Выпущенно: {released}</p>
+                        <div className='game__release'>
+                            <p className='game__lastupdate'>Последнее обновление</p>
+                            <p className='game__update'>{upgrade}</p> 
+                        </div>
+                        <Link to='/games' className='game__back'>← Вернутся</Link>
+                    </div>
                 </div>
                 <div className='game__text'>
                     <h2 className='game__title'>Описание</h2>
@@ -88,6 +97,8 @@ const Wiev = (props) => {
             <Trailers id={id}/>
             <h2 className='progress__title'>Достижения</h2>
             <Progress id={id}/>
+            <h2 className='progress__title'>Другие серий игры</h2>
+            <Series slug={slug}/>
             <h2 className='progress__title'>Разработчики игры</h2>
             <Developers id={id}/>
             <h2 className='progress__title'>Магазины продающие данную игру</h2>

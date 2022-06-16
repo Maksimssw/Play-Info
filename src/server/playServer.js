@@ -67,6 +67,13 @@ const playServer = () =>{
         return data.results;
     } // Магазины которые продают игру
 
+    const requestGameSeries = async () => {
+        const data = await request(`https://api.rawg.io/api/games/grand-theft-auto-v/game-series${_key}`);
+
+        return data.results;
+    } // Часть одной серий 
+
+
     return {
         loading, // Загрузка 
         error, // Ошибка
@@ -80,6 +87,7 @@ const playServer = () =>{
         requestGameDevelopers, // Получение разработчиков
         requestGamegTrailers, // Трейлеры игры
         requestGameShops, // Магазины которые продают игру
+        requestGameSeries, // Часть одной серий 
     }
 }
 
