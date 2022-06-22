@@ -8,6 +8,8 @@ const Error = lazy(() => import('../Page/Error/Error'));
 const PlatformInfo = lazy(() => import('../Page/PlatformInfo/PlatformInfo'));
 const AllGames = lazy(() => import('../Page/AllGamesPage/AllGamesPage'));
 const GamePage = lazy(() => import('../Page/GamePage/GamePage'));
+const Shops = lazy(() => import('../Page/Shops/Shops'));
+const Shop = lazy(() => import('../Page/Shop/Shop'));
  
 const App = () => {
     return (
@@ -20,6 +22,8 @@ const App = () => {
                     <Route path="/:idPlatform" element={<PlatformInfo/>}/>
                     <Route path="/games" element={<AllGames/>}/>
                     <Route path="/games/:idGame" element={<GamePage/>}/>
+                    <Route path="/shops" element={<Shops/>}/>
+                    <Route path="/shops/:idShop" element={<Shop/>}/>
                 </Routes>
             </Router>
         </Suspense> 

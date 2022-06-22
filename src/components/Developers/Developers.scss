@@ -28,7 +28,7 @@
     }
     &__err{
         text-align: center;
-        font-size: 18px;
+        font-size: 18px;    
     }
 }
 
@@ -47,6 +47,7 @@
         }
         &__list{
             overflow: initial;
+            width: 300px;
         }
         &__ph{
             img{

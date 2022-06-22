@@ -42,10 +42,14 @@ const Wiev = (props) => {
         )
     });
 
-    return (
-        <ul className='game-shop__wrapper'> 
-            {shopsList}
-        </ul>
+    return(
+        <>
+            {shopsList.length === 0 ? <h2 className='game-shop__err'>Магазинов не найдено 😞</h2>: 
+            <ul className='game-shop__wrapper'> 
+                {shopsList}
+            </ul>
+            }
+        </>
     )
 }
 

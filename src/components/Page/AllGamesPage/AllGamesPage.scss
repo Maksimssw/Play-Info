@@ -17,6 +17,7 @@
         box-shadow: 0 0 7px 6px #2a1b41;
         border-radius: 20px;
         overflow: hidden;
+        background: #140c20;
     }
     &__ph{
         width: 100%;
@@ -29,6 +30,9 @@
             left: 50%;
             transform: translateX(-50%);
         }
+    }
+    &__err{
+        text-align: center;
     }
     &__link{
         display: block;

@@ -14,7 +14,7 @@ const playServer = () =>{
 
     const requestPlatformInfo = async (id) => {
         const data = await request(`https://api.rawg.io/api/platforms/${id}${_key}`);
-        console.log(data);
+       
         return tranformPlatformInfo(data);
     } // Получение платформы
 
@@ -26,8 +26,9 @@ const playServer = () =>{
     }
 
     const requestGames = async  () => {
-        const data = await request(`https://rawg.io/api/games${_key}`);
+        const data = await request(`https://rawg.io/api/games${_key}&page=1&page_size=40`);
         
+        console.log(data);
         return data.results;
     } // Получениение всех игр
 
@@ -67,12 +68,23 @@ const playServer = () =>{
         return data.results;
     } // Магазины которые продают игру
 
-    const requestGameSeries = async () => {
-        const data = await request(`https://api.rawg.io/api/games/grand-theft-auto-v/game-series${_key}`);
+    const requestGameSeries = async (id) => {
+        const data = await request(`https://api.rawg.io/api/games/${id}/game-series${_key}`);
 
         return data.results;
     } // Часть одной серий 
 
+    const requestAllShops = async () => {
+        const data = await request(`https://api.rawg.io/api/stores${_key}`);
+
+        return data.results;
+    } // Магазины
+
+    const requestShop = async (id) => {
+        const data = await request(`https://api.rawg.io/api/stores/${id}${_key}`);
+
+        return data;
+    } // Подробная информация о магазине
 
     return {
         loading, // Загрузка 
@@ -88,6 +100,8 @@ const playServer = () =>{
         requestGamegTrailers, // Трейлеры игры
         requestGameShops, // Магазины которые продают игру
         requestGameSeries, // Часть одной серий 
+        requestAllShops, // Магазины
+        requestShop, // Подробная информация о магазине
     }
 }
 

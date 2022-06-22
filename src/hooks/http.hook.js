@@ -9,7 +9,20 @@ export const Http = () => {
         setLoading(true);
 
         try{
-            let res = await fetch(url);
+
+            const init = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                page_size: 40,
+                page: 40
+            }
+
+            let res = await fetch(url, {
+                page: 40,
+                page_size: 40
+            });
 
             if(!res.ok){
                 throw new Error(`url: ${url}, status: ${res.status}`);

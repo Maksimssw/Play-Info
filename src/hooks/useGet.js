@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import playServer from "../server/playServer";
-import Spinner from "../components/Slider/Slider";
 
 const useGet = (id, request) => {
 
@@ -16,6 +15,8 @@ const useGet = (id, request) => {
         requestGamegTrailers,
         requestGameShops,
         requestGameSeries,
+        requestAllShops,
+        requestShop,
     } = playServer();
 
 

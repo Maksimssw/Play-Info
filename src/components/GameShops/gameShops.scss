@@ -12,6 +12,9 @@
     ul li{
         list-style-type:decimal;
     }
+    &__err{
+        text-align: center;
+    }
 }
 
 @media screen and(max-width: 1134px) {

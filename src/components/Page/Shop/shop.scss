@@ -1,0 +1,19 @@
+@import '../../App/reset.scss';
+
+.shop{
+    &__name{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    &__err{
+        text-align: center;
+    }
+    &__site{
+        display: block;
+        text-align: center;
+        color: $orange;
+        text-decoration: none;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+}

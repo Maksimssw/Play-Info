@@ -9,15 +9,18 @@ const AllGamesPage = () => {
 
     const {requestGames, loading, error} = playServer();
 
-    const data = useGet(undefined, requestGames);
-
     const [games, setGames] = useState();
 
     useEffect(() => {
-        setGames(data);
-    }, [data]);
+        getAllGames();
+    }, []);
 
-
+    const getAllGames = () => {
+        requestGames()
+            .then(data => {
+                setGames({games, data});
+            });
+    }
 
     const {loaded, mistake} = useLoad(loading, error);
     const content = loading || error || games === undefined ? null : <Wiev games={games}/>
@@ -29,6 +32,7 @@ const AllGamesPage = () => {
                 {loaded}
                 {mistake}
                 {content}
+                <button onClick={getAllGames}>Open</button>
             </div>
         </section>
     );
@@ -38,7 +42,9 @@ const Wiev = (props) => {
 
     const {games} = props
 
-    const game = games.map(item => {
+    console.log(games.data);
+
+    const game = games.data.map(item => {
 
         const {id, background_image, rating, name, slug} = item;
 
