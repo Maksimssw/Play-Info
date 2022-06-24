@@ -17,6 +17,7 @@ const useGet = (id, request) => {
         requestGameSeries,
         requestAllShops,
         requestShop,
+        requestGamesSearch,
     } = playServer();
 
 

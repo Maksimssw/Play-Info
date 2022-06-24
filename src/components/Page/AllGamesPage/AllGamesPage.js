@@ -3,36 +3,50 @@ import playServer from '../../../server/playServer';
 import { useEffect, useState} from 'react';
 import useLoad from '../../../hooks/useLoad';
 import { Link } from 'react-router-dom';
-import useGet from '../../../hooks/useGet';
+import Pages from '../../Pages/Pages';
+import Filters from '../../Filters/Filters';
 
 const AllGamesPage = () => {
 
     const {requestGames, loading, error} = playServer();
 
+    const [page, setPage] = useState(1);
+    const [series, setSeries] = useState(false);
+    const [platform, setPlatform] = useState(0);
+    const [platforms, setPlatforms] = useState(4);
+
     const [games, setGames] = useState();
 
     useEffect(() => {
         getAllGames();
-    }, []);
+    }, [page, series, platform, platforms]);
+
+    const getPage = (page) => setPage(page)
+
+    const getSeries = (series) => setSeries(series)
+
+    const getPlatform = (platform) => setPlatform(platform)
+
+    const getPlatforms = (platforms) => setPlatforms(platforms);
 
     const getAllGames = () => {
-        requestGames()
-            .then(data => {
-                setGames({games, data});
-            });
+        requestGames(page, series, platform, platforms)
+            .then(data => setGames(data));
     }
 
     const {loaded, mistake} = useLoad(loading, error);
-    const content = loading || error || games === undefined ? null : <Wiev games={games}/>
-
+    const content = loading || error || games === undefined ? null : <Wiev page={page} getPage={getPage} games={games}/>
+ 
     return(
         <section className='games'>
             <div className='container'> 
+                <Filters getSeries={getSeries}
+                         getPlatform={getPlatform}
+                         getPlatforms={getPlatforms}/>
                 <h1 className='games__title'>Доступные игры</h1>
                 {loaded}
                 {mistake}
                 {content}
-                <button onClick={getAllGames}>Open</button>
             </div>
         </section>
     );
@@ -40,11 +54,9 @@ const AllGamesPage = () => {
 
 const Wiev = (props) => {
 
-    const {games} = props
+    const {games, page, getPage} = props
 
-    console.log(games.data);
-
-    const game = games.data.map(item => {
+    const game = games.map(item => {
 
         const {id, background_image, rating, name, slug} = item;
 
@@ -65,7 +77,11 @@ const Wiev = (props) => {
     });
 
     return(
-        <ul className='games__wrapper'>{game}</ul>
+        <>
+        <Pages page={page} getPage={getPage} games={games.length}/>
+            <ul className='games__wrapper'>{game}</ul>
+        <Pages page={page} getPage={getPage} games={games.length}/>
+        </>
     )
 }
 

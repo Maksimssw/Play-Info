@@ -1,5 +1,4 @@
 import { Http } from "../hooks/http.hook";
-import { useEffect } from "react";
 
 const playServer = () =>{
     const{loading, error, request, onErrorFalse} = Http();
@@ -25,12 +24,23 @@ const playServer = () =>{
         }
     }
 
-    const requestGames = async  () => {
-        const data = await request(`https://rawg.io/api/games${_key}&page=1&page_size=40`);
-        
-        console.log(data);
+    const requestGames = async (page, series, platform, platforms) => {
+
+        const _page = `&page=${page}`;
+        const _series = `&exclude_game_series=${series}`;
+        const _platform = `&platforms_count=${platform}`;
+        const _platforms = `&platforms=${platforms === null ? 4 : platforms}`
+
+        const data = await request(`https://rawg.io/api/games${_key}${_page}&page_size=20${_series}${_platform}${_platforms}`);
+
         return data.results;
     } // Получениение всех игр
+
+    const requestGamesSearch = async () => {
+        const data = await request(`https://rawg.io/api/games${_key}&search_precise=false`);
+
+        return data;
+    } // Получениение всех игр (Поиск)
 
     const requestGame = async (id) => {
         const data = request(`https://api.rawg.io/api/games/${id}${_key}`)
@@ -102,6 +112,7 @@ const playServer = () =>{
         requestGameSeries, // Часть одной серий 
         requestAllShops, // Магазины
         requestShop, // Подробная информация о магазине
+        requestGamesSearch, // Получениение всех игр (Поиск)
     }
 }
 
