@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 import './AppHeader.scss';
 import { useState } from "react";
+import star from '../img/star.png';
 
 const AppHeader = () => {
 
@@ -33,6 +34,11 @@ const AppHeader = () => {
                             <NavLink className="menu__link" to="/shops"
                                      style={({isActive}) => ({color: isActive ? '#f49120' : null})}>Магазины</NavLink>
                         </li>
+                        <li className="menu__list">
+                            <NavLink to="/favorites">
+                                <img src={star} className="menu__star" alt="star"/>
+                            </NavLink>
+                        </li>
                     </ul>
                     <div tabIndex='0' 
                         className={`hamburger ${activeHamb ? 'active' : ''}`}
@@ -64,6 +70,11 @@ const AppHeader = () => {
                                  to="/shops"
                                  style={({isActive}) => ({color: isActive ? '#f49120' : null})}>Магазины</NavLink>
                     </li>
+                    <li className="menu__list">
+                            <NavLink to="/favorites">
+                                <img src={star} className="menu__star" alt="star"/>
+                            </NavLink>
+                        </li>
                 </ul>
             </div>
         </section>

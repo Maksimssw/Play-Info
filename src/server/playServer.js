@@ -43,15 +43,15 @@ const playServer = () =>{
     } // Получениение всех игр (Поиск)
 
     const requestGame = async (id) => {
-        const data = request(`https://api.rawg.io/api/games/${id}${_key}`)
-        
-        return data
+        const data = await request(`https://api.rawg.io/api/games/${id}${_key}`)
+
+        return await data
     } // Получение одной игры
 
     const requestGamePhoto = async (id) => {
         const data = await request(`https://api.rawg.io/api/games/${id}/screenshots${_key}`);
 
-        return data.results;
+        return  data.results;
     }  // Получение фоток для одной игры
 
     const requestGameProgress = async (id) => {

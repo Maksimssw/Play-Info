@@ -10,6 +10,7 @@ import Developers from '../../Developers/Developers';
 import Trailers from '../../Trailers/Trailers';
 import GameShops from '../../GameShops/GameShops';
 import Series from '../../Series/Series';
+import star from '../../img/star.png';
 
 const GamePage = () => {
 
@@ -88,7 +89,12 @@ const Wiev = (props) => {
                     </div>
                 </div>
                 <div className='game__text'>
-                    <h2 className='game__title'>Описание</h2>
+                    <h2 className='game__title'>
+                        Описание
+                        <div className='star__wrapper'>
+                            <Favorites slug={slug}/>
+                        </div>
+                    </h2>
                     <p className='game__description'>{descriptionRaw}</p>
                 </div>
             </div>
@@ -103,6 +109,43 @@ const Wiev = (props) => {
             <Developers id={id}/>
             <h2 className='progress__title'>Магазины продающие данную игру</h2>
             <GameShops slug={slug}/>
+        </>
+    )
+}
+
+const Favorites = (props) => {
+
+    const {slug} = props;
+
+    const[favoritesStyle, setFavoritesStyle] = useState();
+
+    const favorites = () => {
+        setFavoritesStyle(favoritesStyle ? false : true);
+    }
+
+    const saveId = () => {
+        const id = slug;
+        const data = [];
+
+        const res = (localStorage.getItem('favorite')); 
+        console.log(res);
+
+        localStorage.setItem('favorite',  res ? `${res} ${id}` : JSON.stringify(id));
+    }
+
+    return( 
+        <>
+            <img className='game__star' 
+                onMouseEnter={favorites} 
+                src={star} alt="star"
+                onMouseLeave={favorites}
+                onClick={saveId}/>
+
+            <div className='star__messages'
+                    style={{visibility: `${favoritesStyle ? 'initial' : 'hidden'}`,
+                            opacity:  1}}>
+                Добавить игру в избраное
+            </div>
         </>
     )
 }

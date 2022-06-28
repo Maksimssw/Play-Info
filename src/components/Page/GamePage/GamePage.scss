@@ -23,6 +23,9 @@
         font-size: 36px;
         line-height: 42px;
         margin-bottom: 50px;
+        display: flex;
+        align-items: center;
+        gap: 40px;
     }
     &__description{
         font-size: 24px;
@@ -77,6 +80,32 @@
         a{
             color: $orange;
         }
+    }
+    &__star{
+        width: 25px;    
+        height: 25px;
+        cursor: pointer;
+    }
+}
+
+.star{
+    &__wrapper{
+        position: relative;
+    }
+    &__messages{
+        left: 0;
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        font-size: 12px;
+        line-height: 15px;
+        border-radius: 5px;
+        background: #403a3a;
+        transition: 0.3s all;
+        padding: 10px;
+        box-sizing: content-box;
+        visibility: hidden;
+        opacity: 0;
     }
 }
 

@@ -10,7 +10,8 @@ const AllGames = lazy(() => import('../Page/AllGamesPage/AllGamesPage'));
 const GamePage = lazy(() => import('../Page/GamePage/GamePage'));
 const Shops = lazy(() => import('../Page/Shops/Shops'));
 const Shop = lazy(() => import('../Page/Shop/Shop'));
- 
+const Favorites = lazy(() => import('../Page/Favorites/Favorites')); 
+
 const App = () => {
     return (
         <Suspense fallback={<Spinner/>}>
@@ -24,6 +25,7 @@ const App = () => {
                     <Route path="/games/:idGame" element={<GamePage/>}/>
                     <Route path="/shops" element={<Shops/>}/>
                     <Route path="/shops/:idShop" element={<Shop/>}/>
+                    <Route path="/favorites" element={<Favorites/>}/>
                 </Routes>
             </Router>
         </Suspense> 
