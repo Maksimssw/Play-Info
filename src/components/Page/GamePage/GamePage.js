@@ -11,6 +11,7 @@ import Trailers from '../../Trailers/Trailers';
 import GameShops from '../../GameShops/GameShops';
 import Series from '../../Series/Series';
 import star from '../../img/star.png';
+import Rating from '../../Rating/Rating';
 
 const GamePage = () => {
 
@@ -48,21 +49,6 @@ const Wiev = (props) => {
     const {background_image, id, description_raw, rating, released, updated, slug, name, website} = game
 
     const upgrade = updated.replace(/T/g, '  ');
-    const[style, setStyle] = useState();
-
-    useEffect(() => {
-        styleRating();
-    }, [])
-
-    const styleRating = useCallback(() => {
-        if(rating > 4){
-            setStyle('green');
-        } else if(rating > 2 && rating < 4){
-            setStyle('orange');
-        } else{
-            setStyle('red');
-        }
-    }, []);
 
     const descriptionRaw = description_raw === '' ? <p>К данной игре отсутствует Описание</p> : description_raw
 
@@ -76,9 +62,7 @@ const Wiev = (props) => {
                     <div className='game__info'>
                         <div className='game__result'>
                             <h2 className='game__name'>{name}</h2>
-                            <div className='game__rating' style={{'background': `${style}`}}>
-                                {rating}
-                            </div>
+                            <Rating rating={rating} volum={100}/>
                         </div>
                         <p className='game__released'>Выпущенно: {released}</p>
                         <div className='game__release'>

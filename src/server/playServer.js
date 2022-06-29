@@ -45,7 +45,7 @@ const playServer = () =>{
     const requestGame = async (id) => {
         const data = await request(`https://api.rawg.io/api/games/${id}${_key}`)
 
-        return await data
+        return data
     } // Получение одной игры
 
     const requestGamePhoto = async (id) => {
