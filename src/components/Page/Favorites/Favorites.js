@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import playServer from "../../../server/playServer";
 import useLoad from "../../../hooks/useLoad";
 import './favorites.scss';
@@ -18,23 +18,36 @@ const Favorites = () => {
         addToArray();
     }, []);
 
-    const addToArray = () => setArr(favorites.replace(/"/g, '').split` `)
+    const addToArray = () => {
+        const res = favorites === null ? null : favorites.replace(/"/g, '').split` `;
+
+        setArr(res)
+    };
 
     useEffect(() => {
         getGames()
     }, [arr])
 
+
+    const switching = () => {
+        setGames([]);
+        setArr(null);
+    };
+
     const getGames = () => {
         const emptyArray = []
-        arr.forEach(item => {
-            requestGame(item)
-            .then(data => emptyArray.push(data))
-            .then(() => setGames([...games, emptyArray]))
-        })
+        if(arr !== null){
+            arr.forEach(item => {
+                requestGame(item)
+                .then(data => emptyArray.push(data))
+                .then(() => setGames([...games, emptyArray]))
+            })
+        }
     };
 
     const {loaded, mistake} = useLoad(loading, error);
-    const contant = loaded || mistake || games.length === 0 ? null : <Wiev games={games}/>
+    const contant = loaded || mistake || games.length === 0 ? null : <Wiev games={games} switching={switching}/>
+    const empryText = loaded || mistake ? null : <h2>Вы ничего не добавили :(</h2>
 
     return(
         <section className="favorites">
@@ -42,6 +55,7 @@ const Favorites = () => {
                 {loaded}
                 {mistake}
                 {contant}
+                {arr === null  ? empryText : null}
             </div>
         </section>
     )
@@ -49,9 +63,13 @@ const Favorites = () => {
 
 
 const Wiev = (props) =>{
-    const {games} = props;
+    const {games, switching} = props;
 
-    const game = games[0].map(item => {
+    const list = games[0]
+
+    const idSlug = useRef();
+
+    const game = list.map(item => {
         const {id, rating, name, slug, background_image} = item;
 
         return(
@@ -71,18 +89,24 @@ const Wiev = (props) =>{
 
                 </div>
 
-                <div className="trashcan"> 
-                    <img src={trashcan} alt="trashcan"/>
-                </div>
-
             </li>
         )
     });
 
+    const deletingGame = () => {
+        localStorage.clear();
+        switching();
+    }
+
     return (
-        <ul className="favorites__wrapper">
-            {game}
-        </ul>
+        <>
+            <a href="#" ref={idSlug} onClick={deletingGame} className="trashcan"> 
+                <img src={trashcan} alt="trashcan"/>
+            </a>
+            <ul className="favorites__wrapper">
+                {game}
+            </ul>
+        </>
     )
 }
 

@@ -1,4 +1,5 @@
 import './Progress.scss';
+import '../Page/GamePage/GamePage.scss';
 import { useState, useEffect } from 'react';
 import useGet from '../../hooks/useGet';
 import useLoad from '../../hooks/useLoad';
@@ -20,6 +21,7 @@ const Progress = (props) => {
     const contant = loading || error || progress === undefined  ? null : <Wiev progress={progress}/>
     return(
         <section className='progress'>
+            <h2 className='progress__title'>Достижения</h2>
             {loaded}
             {mistake}
             {contant}

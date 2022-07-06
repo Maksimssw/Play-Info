@@ -19,7 +19,8 @@ const Rating = (props) => {
     }
 
     return(
-        <div className='rating' style={{'background': `${styleColor}`, width: volum, height: volum}}>
+        <div className='rating' style={{'background': `${styleColor}`, width: volum, height: volum,
+                                        fontSize: `${volum === 50 ? '17px' : null}`}}>
             {rating}
         </div>
     )

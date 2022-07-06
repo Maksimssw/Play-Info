@@ -54,11 +54,12 @@
 }
 
 .trashcan{
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    right: 10px;
-    top: 10px;
+    width: 65px;
+    height: 65px;
+    display: block;
+    margin-left: auto;
+    cursor: pointer;
+    margin-bottom: 40px;
     img{
         width: 100%;
         height: 100%;
