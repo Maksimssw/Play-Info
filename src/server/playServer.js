@@ -25,16 +25,26 @@ const playServer = () =>{
         }
     }
 
-    const requestGames = async (page, series, platform, platforms) => {
+    const requestGames = async (page, series, platform, platforms, genres, tags) => {
 
         const _page = `&page=${page}`;
         const _series = `&exclude_game_series=${series}`;
         const _platform = `&platforms_count=${platform}`;
-        const _platforms = `&platforms=${platforms === null ? 4 : platforms}`
+        const _platforms =  platforms == 0 ? null : `&platforms=${platforms === null ? 4 : platforms}`
+        const _genres =  `&genres=${genres}`;
+        const _tags = tags === '0' || tags === null || tags === undefined ? '' : `&tags=${tags}`;
 
-        const data = await request(`https://rawg.io/api/games${_key}${_page}&page_size=20${_series}${_platform}${_platforms}`);
+        console.log(_tags);
 
-        return data.results;
+        if(genres === null || genres === 'Все'){
+            const data = await request(`https://rawg.io/api/games${_key}${_page}&page_size=20${_series}${_platform}${_platforms}${_tags}`);
+
+            return data.results;
+        } else{
+            const data = await request(`https://rawg.io/api/games${_key}${_page}&page_size=20${_series}${_platform}${_platforms}${_genres}${_tags}`);
+            
+            return data.results;
+        }
     } // Получениение всех игр
 
     const requestGamesSearch = async () => {
@@ -97,6 +107,18 @@ const playServer = () =>{
         return data;
     } // Подробная информация о магазине
 
+    const requestGenres = async () => {
+        const data = await request(`https://api.rawg.io/api/genres${_key}`);
+
+        return data.results;
+    } // Жанры
+
+    const requestTags = async () => {
+        const data = await request(`https://api.rawg.io/api/tags${_key}`);
+
+        return data.results;
+    } // Теги
+
     return {
         loading, // Загрузка 
         error, // Ошибка
@@ -114,6 +136,8 @@ const playServer = () =>{
         requestAllShops, // Магазины
         requestShop, // Подробная информация о магазине
         requestGamesSearch, // Получениение всех игр (Поиск)
+        requestGenres, // Жанры
+        requestTags, // Теги
     }
 }
 

@@ -16,12 +16,14 @@ const AllGamesPage = () => {
     const [series, setSeries] = useState(false);
     const [platform, setPlatform] = useState(0);
     const [platforms, setPlatforms] = useState(4);
+    const [genres, setGenres] = useState(null);
+    const [tags, setTags] = useState(null);
 
     const [games, setGames] = useState();
 
     useEffect(() => {
         getAllGames();
-    }, [page, series, platform, platforms]);
+    }, [page, series, platform, platforms, genres, tags]);
 
     const getPage = (page) => setPage(page)
 
@@ -31,8 +33,12 @@ const AllGamesPage = () => {
 
     const getPlatforms = (platforms) => setPlatforms(platforms);
 
+    const getGenres = (genres) => setGenres(genres);
+
+    const getTags = (tags) => setTags(tags);
+
     const getAllGames = () => {
-        requestGames(page, series, platform, platforms)
+        requestGames(page, series, platform, platforms, genres, tags)
             .then(data => setGames(data));
     }
 
@@ -48,7 +54,9 @@ const AllGamesPage = () => {
             <div className='container'> 
                 <Filters getSeries={getSeries}
                          getPlatform={getPlatform}
-                         getPlatforms={getPlatforms}/>
+                         getPlatforms={getPlatforms}
+                         getGenres={getGenres}
+                         getTags={getTags}/>
                 <h1 className='games__title'>Доступные игры</h1>
                 {loaded}
                 {mistake}

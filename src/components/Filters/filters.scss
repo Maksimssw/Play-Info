@@ -31,4 +31,15 @@
         -webkit-appearance: none;
         margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
     }
+
+    &-genres{
+        &__wrapper{
+            display: flex;
+            gap: 20px;
+        }
+    }
+    &__container{
+        display: flex;
+        justify-content: space-between;
+    }
 }

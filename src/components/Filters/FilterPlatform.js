@@ -7,7 +7,8 @@ const FilterPlatform = (props) =>{
 
     useEffect(() => {
         const plat = localStorage.getItem('platformsCount');
-        platform.current.value = plat;
+
+        platform.current.value = plat === null ? 0 : plat;
         getPlatform(plat);
     }, []);
 

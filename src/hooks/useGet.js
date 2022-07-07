@@ -18,6 +18,8 @@ const useGet = (id, request) => {
         requestAllShops,
         requestShop,
         requestGamesSearch,
+        requestGenres,
+        requestTags,
     } = playServer();
 
 

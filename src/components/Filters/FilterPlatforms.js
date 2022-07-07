@@ -43,7 +43,7 @@ const Wiev = (props) => {
 
     useEffect(() => {
         const plat = localStorage.getItem('platform');
-        platform.current.value = plat;
+        platform.current.value = plat === null ? 0 : plat;
         getPlatforms(plat);
     }, []);
 
@@ -51,6 +51,7 @@ const Wiev = (props) => {
         <li className="filters__list">
             Выбрать определенную платформу: 
             <select onChange={choisPlatform} ref={platform}>
+                <option value={0}>Все</option>
                 {option}
             </select>
         </li>

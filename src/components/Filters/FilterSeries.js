@@ -7,8 +7,9 @@ const FilterSeries = (props) => {
     const series = useRef();
 
     useEffect(() => {
-        const log = localStorage.getItem('excludeGameSeries') === 'false' ? false : true;
-        series.current.checked = log;
+        const log = localStorage.getItem('excludeGameSeries');
+        console.log(log)
+        series.current.checked = log === 'false' || log === null ? false : true;
         getSeries(log);
     }, []);
 
