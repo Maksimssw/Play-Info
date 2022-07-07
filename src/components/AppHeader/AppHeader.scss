@@ -88,6 +88,14 @@
     }
 }
 
+.menu__link.active{
+    svg{
+        path{
+            fill: #F23232;
+        }
+    }
+}
+
 .hamburger.active{
     span{
         &:nth-child(1){

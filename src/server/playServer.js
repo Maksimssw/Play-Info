@@ -13,14 +13,15 @@ const playServer = () =>{
 
     const requestPlatformInfo = async (id) => {
         const data = await request(`https://api.rawg.io/api/platforms/${id}${_key}`);
-       
+        console.log(data);
         return tranformPlatformInfo(data);
     } // Получение платформы
 
     const tranformPlatformInfo = (platform) => {
         return{
             img: platform.image_background,
-            description: platform.description
+            description: platform.description,
+            name: platform.name
         }
     }
 

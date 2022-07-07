@@ -3,7 +3,7 @@ import useGet from '../../hooks/useGet';
 import useLoad from '../../hooks/useLoad';
 import playServer from '../../server/playServer';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import '../Page/GamePage/GamePage.scss';
 
 const Series = (props) => {
     
@@ -12,17 +12,19 @@ const Series = (props) => {
 
     const data = useGet(slug, requestGameSeries);
     const [series, setSeries] = useState();
+    const [seriesText, setSeriesText] = useState('Другие серий игры')
 
     useEffect(() => {
         setSeries(data);
     }, [data]);
 
     const {loaded, mistake} = useLoad (loading, error);
-    const content = loading || error || series === undefined ? null : <Wiev series={series}/>
+    const content = loading || error || series === undefined ? null : <Wiev series={series} setSeriesText={setSeriesText}/>
 
     return(
-        <section className='games'>
+        <section style={{display: seriesText === '' ? 'none' : 'block'}} className='games'>
             <div className='container'> 
+                <h2 className='progress__title'>{error ? null : seriesText}</h2>
                 {loaded}
                 {mistake}
                 {content}
@@ -32,9 +34,7 @@ const Series = (props) => {
 }
 
 const Wiev = (props) => {
-    const {series} = props;
-
-    console.log(series);
+    const {series, setSeriesText} = props;
 
     const games = series.map(item => {
         const {slug, id, background_image, rating, name} = item;
@@ -58,8 +58,7 @@ const Wiev = (props) => {
     return(
         <>
             {
-                games.length === 0 ?  <h2 className='games__err'>Не удалось найти другие серий 😞</h2> : 
-                <ul className='games__wrapper'>{games}</ul>
+                games.length === 0 ?  setSeriesText('') : <ul className='games__wrapper'>{games}</ul>
             }
         </>
     )

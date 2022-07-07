@@ -12,6 +12,7 @@ import GameShops from '../../GameShops/GameShops';
 import Series from '../../Series/Series';
 import star from '../../img/star.png';
 import Rating from '../../Rating/Rating';
+import { Helmet } from 'react-helmet'
 
 const GamePage = () => {
 
@@ -32,13 +33,18 @@ const GamePage = () => {
     const contant = loading || error || game === undefined  ? null : <Wiev game={game}/>
 
     return(
-        <section className='game'>
-            <div className='container'>
-                {loaded}
-                {mistake}
-                {contant}
-            </div>
-        </section>
+        <>
+            <Helmet>
+                <title>{ game === undefined ? 'Play Info' : game.name }</title>
+            </Helmet>
+            <section className='game'>
+                <div className='container'>
+                    {loaded}
+                    {mistake}
+                    {contant}
+                </div>
+            </section>
+        </>
     )
 }
 
@@ -86,11 +92,8 @@ const Wiev = (props) => {
             <Slider slug={slug}/>
             <Trailers id={id}/>
             <Progress id={id}/>
-            <h2 className='progress__title'>Другие серий игры</h2>
             <Series slug={slug}/>
-            <h2 className='progress__title'>Разработчики игры</h2>
             <Developers id={id}/>
-            <h2 className='progress__title'>Магазины продающие данную игру</h2>
             <GameShops slug={slug}/>
         </>
     )

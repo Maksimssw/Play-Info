@@ -45,6 +45,10 @@
             border-radius: 30px;
         }
     }
+    &__name{
+        text-align: center;
+        margin:  10px 0 10px;
+    }
 }
 
 @media screen and(max-width: 1300px) {

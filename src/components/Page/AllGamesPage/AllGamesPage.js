@@ -5,6 +5,8 @@ import useLoad from '../../../hooks/useLoad';
 import { Link } from 'react-router-dom';
 import Pages from '../../Pages/Pages';
 import Filters from '../../Filters/Filters';
+import { Helmet } from 'react-helmet';
+import imageError from '../../img/image_error_full.png';
 
 const AllGamesPage = () => {
 
@@ -38,6 +40,10 @@ const AllGamesPage = () => {
     const content = loading || error || games === undefined ? null : <Wiev page={page} getPage={getPage} games={games}/>
  
     return(
+        <>
+        <Helmet>
+            <title>Вcе игры</title>
+        </Helmet>
         <section className='games'>
             <div className='container'> 
                 <Filters getSeries={getSeries}
@@ -49,6 +55,7 @@ const AllGamesPage = () => {
                 {content}
             </div>
         </section>
+        </>
     );
 }
 
@@ -63,7 +70,7 @@ const Wiev = (props) => {
         return(
             <li key={id} className='games__list'>
                 <div className='games__ph'>
-                    <img src={background_image} alt={name}/>
+                    <img src={background_image  === null ? imageError : background_image} alt={name}/>
                 </div>
                 <div className='games__info'>
                     <Link to={`/games/${slug}`} className='games__link'>{name}</Link>

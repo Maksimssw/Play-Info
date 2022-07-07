@@ -12,16 +12,17 @@ const Progress = (props) => {
     const {id} = props;
     const data = useGet(id, requestGameProgress);
     const [progress, setProgress] = useState()
+    const [progressText, setProgressText] = useState('Достижения'); 
 
     useEffect(() => {
         setProgress(data);
     }, [data])
     
     const {loaded, mistake} = useLoad(loading, error);
-    const contant = loading || error || progress === undefined  ? null : <Wiev progress={progress}/>
+    const contant = loading || error || progress === undefined  ? null : <Wiev progress={progress} setProgressText={setProgressText}/>
     return(
-        <section className='progress'>
-            <h2 className='progress__title'>Достижения</h2>
+        <section style={{display: progressText === '' ? 'none' : 'block'}} className='progress'>
+            <h2 className='progress__title'>{error ? null : progressText}</h2>
             {loaded}
             {mistake}
             {contant}
@@ -30,15 +31,11 @@ const Progress = (props) => {
 }
 
 const Wiev = (props) => {
-    const {progress} = props;
+    const {progress, setProgressText} = props;
 
 
     if(progress.length === 0){
-        return(
-            <>
-                <div className='progress__err'>Достижений к этой игре не найдено 😞</div>
-            </>
-        )
+        setProgressText('');
     } else {
         const setProgress = progress.map(item => {
             const {id, image, name, description} = item;

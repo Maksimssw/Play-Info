@@ -5,6 +5,7 @@ import './favorites.scss';
 import Rating from "../../Rating/Rating";
 import { Link } from "react-router-dom";
 import trashcan from '../../img/trashcan.png';
+import { Helmet } from "react-helmet";
 
 const Favorites = () => {
 
@@ -50,6 +51,10 @@ const Favorites = () => {
     const empryText = loaded || mistake ? null : <h2>Вы ничего не добавили :(</h2>
 
     return(
+        <>
+        <Helmet>
+            <title>Избранное</title>
+        </Helmet>
         <section className="favorites">
             <div className="container">
                 {loaded}
@@ -58,6 +63,7 @@ const Favorites = () => {
                 {arr === null  ? empryText : null}
             </div>
         </section>
+        </>
     )
 }
 

@@ -5,6 +5,7 @@ import Error from "../Error/Error";
 import './PatformPage.scss';
 import SearchPlatform from "../../SearchPlatform/SearchPlatform";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const PlatformPage = () => {
     const{loading, error, requestAllPlay} = playServer();
@@ -40,8 +41,10 @@ const PlatformPage = () => {
 
     return (
         <>
-            <SearchPlatform 
-                            filterPlatform={filterPlatform}/>
+            <Helmet>
+                <title>Платформы</title>
+            </Helmet>
+            <SearchPlatform filterPlatform={filterPlatform}/>
             {contant}
             {loaded}
             {mistake}

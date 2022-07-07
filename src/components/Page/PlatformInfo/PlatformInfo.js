@@ -6,6 +6,7 @@ import Error from '../Error/Error';
 import { Link, useParams } from 'react-router-dom';
 import useGet from '../../../hooks/useGet';
 import useLoad from '../../../hooks/useLoad';
+import { Helmet } from 'react-helmet';
 
 const PlatformInfo = () => {
 
@@ -26,7 +27,13 @@ const PlatformInfo = () => {
     const {loaded, mistake} = useLoad(loading, error);
     const contant = loading || error || platform === undefined  ? null : <Wiev platform={platform}/>
 
+    console.log(platform);
+
     return(
+        <>
+        <Helmet>
+            <title>{platform !== undefined ? `Платформы - (${platform.name})` : 'Платформы'}</title>
+        </Helmet>
         <section className='platform-info'>
             <div className='container'>
                 {loaded}
@@ -34,6 +41,7 @@ const PlatformInfo = () => {
                 {contant}
             </div>
         </section>
+        </>
     )
 }
 
@@ -51,6 +59,7 @@ const Wiev = (data) => {
                 <div className='platform-info__photo'>
                     <img src={platform.img} alt='play'/>
                 </div>
+                <h2 className='platform-info__name'>{platform.name}</h2>
                 <Link className='platform-info__back' to='/'>← Вернутся</Link>
             </div>
             <div className='platform-info__text'>

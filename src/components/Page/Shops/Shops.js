@@ -4,6 +4,7 @@ import useLoad from '../../../hooks/useLoad';
 import playServer from '../../../server/playServer';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const Shops = () => {
 
@@ -20,11 +21,16 @@ const Shops = () => {
     const content = loading || error || shops === undefined ? null : <Wiev shops={shops}/>
 
     return(
+        <>
+        <Helmet>
+            <title>Магазины</title>
+        </Helmet>
         <section className='shops'>
             {loaded}
             {mistake}
             {content}
         </section>
+        </>
     )
 }
 
