@@ -4,10 +4,11 @@ import FilterPlatform from "./FilterPlatform";
 import FilterPlatforms from "./FilterPlatforms";
 import FilterGenres from "./FilterGenres";
 import FilterTags from "./FilterTags";
+import FilterPublishers from "./FiltersPublishers";
 
 const Filters = (props) => {
 
-    const {getSeries, getPlatform, getPlatforms, getGenres, getTags} = props;
+    const {getSeries, getPlatform, getPlatforms, getGenres, getTags, getPublishers} = props;
 
     return(
         <section className="filters">
@@ -22,6 +23,7 @@ const Filters = (props) => {
                     <div>
                         <FilterGenres getGenres={getGenres}/>
                         <FilterTags getTags={getTags}/>
+                        <FilterPublishers getPublishers={getPublishers}/>
                     </div>
                 </div>
             </div>

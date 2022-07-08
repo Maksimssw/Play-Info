@@ -27,8 +27,6 @@ const PlatformInfo = () => {
     const {loaded, mistake} = useLoad(loading, error);
     const contant = loading || error || platform === undefined  ? null : <Wiev platform={platform}/>
 
-    console.log(platform);
-
     return(
         <>
         <Helmet>

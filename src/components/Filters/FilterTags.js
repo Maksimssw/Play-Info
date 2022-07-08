@@ -28,8 +28,6 @@ const FilterTags = (props) => {
 const Weiv = (props) => {
     const {tags, getTags} = props;
 
-    console.log(tags);
-
     const list = tags.map(item => {
         const {id, name, slug} = item;
 
@@ -55,6 +53,7 @@ const Weiv = (props) => {
 
     return(
         <div className="filters-tags__wrapper">
+            <p>Теги: </p>
             <select ref={tagsRef} onChange={broadcastTags}>
                 <option value={0}>Все</option>
                 {list}

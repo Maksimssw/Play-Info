@@ -13,7 +13,7 @@ const playServer = () =>{
 
     const requestPlatformInfo = async (id) => {
         const data = await request(`https://api.rawg.io/api/platforms/${id}${_key}`);
-        console.log(data);
+
         return tranformPlatformInfo(data);
     } // Получение платформы
 
@@ -25,24 +25,24 @@ const playServer = () =>{
         }
     }
 
-    const requestGames = async (page, series, platform, platforms, genres, tags) => {
+    const requestGames = async (page, series, platform, platforms, genres, tags, publishers) => {
 
         const _page = `&page=${page}`;
-        const _series = `&exclude_game_series=${series}`;
+        const _series = `&exclude_game_series=${series === null ? false : series}`;
         const _platform = `&platforms_count=${platform}`;
         const _platforms =  platforms == 0 ? null : `&platforms=${platforms === null ? 4 : platforms}`
         const _genres =  `&genres=${genres}`;
         const _tags = tags === '0' || tags === null || tags === undefined ? '' : `&tags=${tags}`;
-
-        console.log(_tags);
+        const _publishers = publishers == 0 || publishers === undefined || publishers === null ? '' : `&publishers=${publishers}`;
 
         if(genres === null || genres === 'Все'){
-            const data = await request(`https://rawg.io/api/games${_key}${_page}&page_size=20${_series}${_platform}${_platforms}${_tags}`);
+            const data = await request(`https://rawg.io/api/games${_key}${_page}&page_size=20${_series}${_platform}${_platforms}${_tags}${_publishers}`);
 
             return data.results;
         } else{
-            const data = await request(`https://rawg.io/api/games${_key}${_page}&page_size=20${_series}${_platform}${_platforms}${_genres}${_tags}`);
-            
+            const data = await request(`https://rawg.io/api/games${_key}${_page}&page_size=20${_series}${_platform}${_platforms}${_genres}${_tags}${_publishers}`);
+            console.log(data);
+
             return data.results;
         }
     } // Получениение всех игр
@@ -119,6 +119,12 @@ const playServer = () =>{
         return data.results;
     } // Теги
 
+    const requestPublishers = async () => {
+        const data = await request(`https://api.rawg.io/api/publishers${_key}`);
+
+        return data.results;
+    } //  Издатели
+
     return {
         loading, // Загрузка 
         error, // Ошибка
@@ -138,6 +144,7 @@ const playServer = () =>{
         requestGamesSearch, // Получениение всех игр (Поиск)
         requestGenres, // Жанры
         requestTags, // Теги
+        requestPublishers, // Издатели
     }
 }
 

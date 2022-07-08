@@ -33,6 +33,20 @@
     }
 
     &-genres{
+        margin-bottom: 30px;
+        &__wrapper{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    &-tags{
+        margin-bottom: 30px;
+        &__wrapper{
+            display: flex;
+           justify-content: space-between;
+        }
+    }
+    &-publishers{
         &__wrapper{
             display: flex;
             gap: 20px;

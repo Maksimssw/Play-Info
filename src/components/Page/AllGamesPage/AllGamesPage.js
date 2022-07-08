@@ -1,6 +1,6 @@
 import './AllGamesPage.scss';
 import playServer from '../../../server/playServer';
-import { useEffect, useState} from 'react';
+import { useCallback, useEffect, useState} from 'react';
 import useLoad from '../../../hooks/useLoad';
 import { Link } from 'react-router-dom';
 import Pages from '../../Pages/Pages';
@@ -18,12 +18,13 @@ const AllGamesPage = () => {
     const [platforms, setPlatforms] = useState(4);
     const [genres, setGenres] = useState(null);
     const [tags, setTags] = useState(null);
+    const [publishers, setPublishers] = useState(null);
 
     const [games, setGames] = useState();
 
     useEffect(() => {
         getAllGames();
-    }, [page, series, platform, platforms, genres, tags]);
+    }, [page, series, platform, platforms, genres, tags, publishers]);
 
     const getPage = (page) => setPage(page)
 
@@ -37,14 +38,16 @@ const AllGamesPage = () => {
 
     const getTags = (tags) => setTags(tags);
 
+    const getPublishers = (publishers) => setPublishers(publishers);
+
     const getAllGames = () => {
-        requestGames(page, series, platform, platforms, genres, tags)
+        requestGames(page, series, platform, platforms, genres, tags, publishers)
             .then(data => setGames(data));
     }
 
     const {loaded, mistake} = useLoad(loading, error);
     const content = loading || error || games === undefined ? null : <Wiev page={page} getPage={getPage} games={games}/>
- 
+
     return(
         <>
         <Helmet>
@@ -56,7 +59,8 @@ const AllGamesPage = () => {
                          getPlatform={getPlatform}
                          getPlatforms={getPlatforms}
                          getGenres={getGenres}
-                         getTags={getTags}/>
+                         getTags={getTags}
+                         getPublishers={getPublishers}/>
                 <h1 className='games__title'>Доступные игры</h1>
                 {loaded}
                 {mistake}

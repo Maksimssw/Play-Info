@@ -8,13 +8,17 @@ const FilterSeries = (props) => {
 
     useEffect(() => {
         const log = localStorage.getItem('excludeGameSeries');
-        console.log(log)
+        
         series.current.checked = log === 'false' || log === null ? false : true;
-        getSeries(log);
+        if(log === null){}else{
+            getSeries(log)
+        }
     }, []);
 
     const excludeGameSeries = (e) => {
         const box = e.target.checked;
+        
+        
         localStorage.setItem('excludeGameSeries', box);
         getSeries(box); 
     };
